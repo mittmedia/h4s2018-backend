@@ -5,14 +5,16 @@ import re
 import requests
 from flask import Flask, json, request
 import time
+import os
 app = Flask(__name__)
 class Graph2(Graph):
     def exists(self, node):
         found_nodes = list(self.find('document', property_key='doc_id', property_value=node['doc_id']))
         return len(found_nodes) > 0
 
-
-graph = Graph2(username='neo4j', password='password')
+username = os.getenv('NEO4J_USERNAME', 'neo4j')
+password = os.getenv('NEO4J_PASSWORD', 'neo4j')
+graph = Graph2(username=username, password=password)
 
 def find_document_type_ref(doc_text,
                            ref_types=['SOU', 'PROP', 'BET', 'MOT', 'VOTING']):
