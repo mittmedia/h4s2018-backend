@@ -107,7 +107,7 @@ def create_document_node(doc):
                 summary=doc['summary'],
                 topic=doc2topic.doc2topic(doc),
                 document_type=doc['doktyp'],
-                published_at=doc['publicerad'],
+                published_at=doc['systemdatum'],
                 link='http:' + doc['dokument_url_html'])
 
 
